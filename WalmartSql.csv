@@ -1,0 +1,39 @@
+CREATE TABLE walmart_saless (
+    Store INT,
+    Date DATE,
+    Weekly_Sales DECIMAL(10, 2),
+    Holiday_Flag INT,
+    Temperature DECIMAL(5, 2),
+    Fuel_Price DECIMAL(5, 3),
+    CPI DECIMAL(10, 3),
+    Unemployment DECIMAL(5, 2)
+);
+
+SELECT * FROM walmart_saless
+
+COPY walmart_saless(Store,Date,Weekly_Sales,Holiday_Flag,Temperature,Fuel_Price,CPI,Unemployment )
+FROM 'C:\SQL\Walmart.csv'
+DELIMITER ','
+CSV HEADER;
+
+SELECT * FROM walmart_saless LIMIT 10;
+
+SELECT * FROM walmart_saless
+WHERE Weekly_Sales > 20000;
+
+SELECT * FROM walmart_saless
+ORDER BY Weekly_Sales DESC
+LIMIT 5;
+
+
+SELECT Store, SUM(Weekly_Sales) AS Total_Sales
+FROM walmart_sales
+GROUP BY Store;
+
+SELECT Store, SUM(Weekly_Sales) AS Total_Sales
+FROM walmart_sales
+GROUP BY Store
+ORDER BY Total_Sales DESC;
+
+
+SELECT * FROM walmart_saless
